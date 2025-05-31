@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}{{ trainer_email.split('@')[0].replace('.', ' ').title() }} Availability{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="text-center mb-4" style="color: #70B6E5;">
+        Availability for {{ trainer_email.split('@')[0].replace('.', ' ').title() }}
+    </h2>
+    
+
+    {% if schedule %}
+        {% for date, blocks in schedule.items() %}
+        <div class="card mb-3 shadow-sm" style="border-radius: 16px; overflow: hidden;">
+            <div class="card-header bg-light" style="border-bottom: 1px solid #dee2e6;">
+                📅 {{ date }}
+            </div>
+            <div class="card-body">        
+                    {% for block in blocks %}
+                        <div class="border rounded p-3 mb-3">
+                            <strong>🕐 {{ block.start_time }} - {{ block.end_time }}</strong>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                  const startTimeSelects = document.querySelectorAll('select[name="start_time"]');
+                              
+                                  startTimeSelects.forEach(select => {
+                                    const form = select.closest('form');
+                                    const durationSelect = form.querySelector('select[name="duration"]');
+                              
+                                    // Get block end time from the card display text
+                                    const blockText = form.closest('.border').querySelector('strong').textContent;
+                                    const blockEnd = blockText.split(' - ')[1].trim(); // e.g., "19:00"
+                              
+                                    select.addEventListener('change', () => {
+                                      const selectedStart = select.value;
+                                      const options = durationSelect.querySelectorAll('option');
+                              
+                                      const toMinutes = t => {
+                                        const [h, m] = t.split(':').map(Number);
+                                        return h * 60 + m;
+                                      };
+                              
+                                      const startMin = toMinutes(selectedStart);
+                                      const endMin = toMinutes(blockEnd);
+                              
+                                      options.forEach(opt => {
+                                        const dur = parseInt(opt.value); // 30, 60, 90
+                                        opt.disabled = (startMin + dur > endMin);
+                                      });
+                              
+                                      // If currently selected option is now invalid, reset to first valid
+                                      if (durationSelect.options[durationSelect.selectedIndex].disabled) {
+                                        for (let opt of options) {
+                                          if (!opt.disabled) {
+                                            durationSelect.value = opt.value;
+                                            break;
+                                          }
+                                        }
+                                      }
+                                    });
+                                  });
+                                });
+                              </script>
+                              
+                            <form method="POST" action="{{ url_for('book_slot') }}">
+                                <input type="hidden" name="trainer_email" value="{{ trainer_email }}">
+                                <input type="hidden" name="date" value="{{ date }}">
+                            
+                                <div class="d-flex flex-wrap align-items-center gap-3 mt-2">
+                                    <div class="flex-grow-1">
+                                        <select name="start_time" class="form-select" required>
+                                            {% for time in block.start_options %}
+                                                <option value="{{ time }}">{{ time }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <select name="duration" class="form-select" required>
+                                            <option value="30">30 minutes</option>
+                                            <option value="60">1 hour</option>
+                                            <option value="90">1 hour 30 minutes</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary px-4">Book</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center text-muted">No available sessions found.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="mb-4" style="color: #70B6E5;">Welcome to Your Athletic Scheduler</h1>
+    <p class="lead">Easily book or upload your training schedules with LIU Athletic Trainers!</p>
+
+    <div class="d-grid gap-3 col-6 mx-auto mt-4">
+        <a href="{{ url_for('register') }}" class="custom-button generate-button">Get Started</a>
+    </div>
+
+    <div class="mt-4">
+        <img src="{{ url_for('static', filename='images/shark-logo.png') }}"
+             alt="LIU Shark Logo"
+             style="height: 240px; margin-top: 40px;">
+    </div>
+</div>
+{% endblock %}

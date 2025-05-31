@@ -1,0 +1,45 @@
+.custom-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.generate-button {
+    background-color: #007acc;
+    color: #ffffff;
+}
+
+.generate-button:hover {
+    background-color: #ffffff;
+    color: #007acc;
+    border-color: #007acc;
+}
+
+.upload-button {
+    background-color: #00b3e6;
+    color: #ffffff;
+}
+
+.upload-button:hover {
+    background-color: #ffffff;
+    color: #00b3e6;
+    border-color: #00b3e6;
+}
+
+.logout-button {
+    background-color: #005f99;
+    color: #ffffff;
+}
+
+.logout-button:hover {
+    background-color: #ffffff;
+    color: #005f99;
+    border-color: #005f99;
+}

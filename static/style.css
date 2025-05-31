@@ -1,0 +1,95 @@
+body {
+    background: linear-gradient(to bottom right, #e0f3ff, #ffffff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #003f66;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #70B6E5; /* LIU Blue */
+}
+
+a, a.nav-link {
+    text-decoration: none;
+    color: #70B6E5 !important;
+}
+a:hover {
+    color: #FFC627 !important; /* LIU Gold */
+}
+
+.card {
+    background-color: #ffffff;
+    border: 2px solid #70B6E5;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #b3daff;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.container {
+    max-width: 960px;
+}
+
+/* Force LIU Theme on Buttons */
+.custom-button,
+.btn-primary,
+.btn-success,
+.btn-secondary {
+    background-color: #70B6E5 !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+.custom-button:hover,
+.btn-primary:hover,
+.btn-success:hover {
+    background-color: #5196c7 !important;
+    color: white !important;
+}
+
+/* Navbar & Footer */
+nav.navbar {
+    background-color: #70B6E5 !important;
+}
+nav .navbar-brand,
+nav .nav-link {
+    color: white !important;
+}
+
+footer {
+    background-color: #70B6E5;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+}
+footer a {
+    color: #FFC627;
+    text-decoration: underline;
+}
+footer a:hover {
+    color: white;
+}
+
+.trainer-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .trainer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: #70B6E5;
+  }
+  
+  @media (max-width: 576px) {
+    .d-flex.flex-wrap.gap-3 > * {
+      flex: 1 1 100%;
+    }
+  }
+  

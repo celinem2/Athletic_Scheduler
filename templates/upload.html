@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Upload Availability{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="mb-4">Upload Trainer Availability</h1>
+    <p class="lead">
+        Please upload an <strong>Excel (.xlsx)</strong> file with available training slots.<br>
+        <a href="{{ url_for('static', filename='default_schedule_template.xlsx') }}" 
+           download="Trainer_Schedule_Template.xlsx"
+           class="btn btn-outline-primary mt-3">
+            Download Sample Template
+        </a>
+    </p>
+</div>
+
+<div class="card p-4 mx-auto shadow" style="max-width: 500px; border-radius: 16px;">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="file" class="form-label">Choose your Excel file</label>
+            <input class="form-control" type="file" name="file" accept=".json,.xlsx,.xls" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="custom-button upload-button">Upload</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

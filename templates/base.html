@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flask App{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #d0ecff, #ffffff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        nav.navbar {
+            background-color: #FFC627 !important;
+        }
+        nav .navbar-brand, nav .nav-link {
+            color: white !important;
+        }
+        footer {
+            margin-top: auto;
+            background-color: #FFC627;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #e0f0ff;
+        }
+        main.container {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Athletic Scheduler</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          {% if session.get('role') == 'trainer' %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('upload') }}">Upload Availability</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+          {% elif session.get('role') == 'athlete' %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('view_availability') }}">View Availability</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>  
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        &copy; 2025 Athletic Scheduler |
+      
+        {% if session.get('role') == 'trainer' %}
+          <a href="{{ url_for('upload') }}">Upload Schedule</a> |
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% elif session.get('role') == 'athlete' %}
+          <a href="{{ url_for('view_availability') }}">View Availability</a> |
+          <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('register') }}">Get Started</a>
+        {% endif %}
+      </footer>
+      
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

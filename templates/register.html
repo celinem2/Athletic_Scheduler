@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="text-center mt-5">
+    <h2 class="mb-4">Pick your role!</h2>
+    <div class="d-grid gap-3 col-6 mx-auto">
+        <a href="{{ url_for('set_role', role='trainer') }}" class="custom-button">I’m a Trainer</a>
+        <a href="{{ url_for('set_role', role='athlete') }}" class="custom-button">I’m an Athlete</a>
+    </div>
+    <div class="mt-4">
+        <img src="{{ url_for('static', filename='images/shark-logo.png') }}"
+             alt="LIU Shark Logo"
+             style="height: 240px; margin-top: 40px;">
+    </div>
+</div>
+{% endblock %}

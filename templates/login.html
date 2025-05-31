@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #d0ecff, #ffffff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-card {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .login-card h1 {
+            color: #005f99;
+            margin-bottom: 10px;
+        }
+
+        .login-card p {
+            color: #444444;
+            margin-bottom: 30px;
+        }
+
+        .login-button {
+            background-color: #007acc;
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #005f99;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h1>Login with Google</h1>
+        <p>You need to log in with your Google account to use this application.</p>
+        <a href="{{ url_for('login') }}">
+            <button class="login-button">Login with Google</button>
+        </a>
+    </div>
+</body>
+</html>

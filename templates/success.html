@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Success{% endblock %}
+{% block content %}
+<div class="text-center">
+    <h1 class="mb-4 text-success">✅ Success!</h1>
+
+    {% if trainer and date and start and end %}
+        <p class="lead">
+            Your training session with <strong>{{ trainer }}</strong> has been booked for:
+        </p>
+        <p><strong>{{ date }}</strong> from <strong>{{ start }}</strong> to <strong>{{ end }}</strong></p>
+        <p>📍 Location: <em>LIU Athletic Training Room</em></p>
+    {% else %}
+        <p class="lead">Your event(s) have been added to your Google Calendar.</p>
+    {% endif %}
+
+    <div class="d-grid gap-3 col-6 mx-auto mt-4">
+        <!--  <a href="{{ url_for('upload') }}" class="custom-button upload-button">Upload Another</a>  -->
+        <a href="{{ url_for('index') }}" class="custom-button">Back to Home</a>
+        <a href="{{ url_for('view_availability') }}" class="custom-button view-button">View Availability</a>
+        <a href="{{ url_for('logout') }}" class="custom-button logout-button">Logout</a>
+    </div>
+</div>
+{% endblock %}
